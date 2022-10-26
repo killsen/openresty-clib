@@ -8,6 +8,7 @@
                  "rocks/luafilesystem":  "1.8.0-1",
                  "rocks/luasocket":  "3.1.0-1",
                  "rocks/hashids":  "1.0.6-1",
-                 "rocks/utf8":  "1.2-0"
+                 "rocks/utf8":  "1.2-0",
+                 "rocks/lua-iconv":  "7-3"
              }
 }
