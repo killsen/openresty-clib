@@ -21,8 +21,8 @@ else
     end
 end
 
-
-hash_mt = {};
+-- change global variable to local by Killsen
+local hash_mt = {};
 hash_mt.__index = hash_mt;
 
 local function gcap(str, pos)
