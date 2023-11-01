@@ -1,6 +1,6 @@
 # openresty-clib
 
-v2.0.0
+v2.0.1
 
 * luafilesystem: 1.8.0-1
   * lfs.dll
@@ -12,9 +12,12 @@ v2.0.0
 * hashids: 1.0.6-1
   * hashids/clib.dll
 
-* utf8: 1.2-0
-  * utf8.dll
+* lua-utf8: 1.2-0
   * lua-utf8.dll
+  * utf8.dll
+
+* lua-iconv: 7-3
+  * iconv.dll
 
 * lua-iconv: 7-3
   * iconv.dll
@@ -24,3 +27,10 @@ v2.0.0
 
 * lua-resty-radixtree
   * librestyradixtree.so
+
+* lua-protobuf: 0.5.0-1
+  * pb.dll
+  * protoc.lua
+
+* lua-lz4: 1.0-1
+  * lz4.dll
