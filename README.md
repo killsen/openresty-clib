@@ -1,6 +1,6 @@
 # openresty-clib
 
-v2.0.1
+v2.0.2
 
 * luafilesystem: 1.8.0-1
   * lfs.dll
@@ -32,5 +32,5 @@ v2.0.1
   * pb.dll
   * protoc.lua
 
-* lua-lz4: 1.0-1
+* lz4 (ffi lib for lua-resty-lz4)
   * lz4.dll
