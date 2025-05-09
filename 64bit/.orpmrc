@@ -1,16 +1,16 @@
 ﻿{
     "app_name":  "",
-    "openresty_ver":  "1.21.4.1",
-    "luarocks_ver":  "3.9.1",
+    "openresty_ver":  "1.27.1.2",
+    "luarocks_ver":  "3.11.1",
     "mingw_ver":  "12.2.0",
     "arch":  "64bit",
     "libs":  {
                  "rocks/luafilesystem":  "1.8.0-1",
                  "rocks/luasocket":  "3.1.0-1",
                  "rocks/hashids":  "1.0.6-1",
-                 "rocks/luautf8":  "0.1.5-1",
-                 "rocks/lua-iconv":  "7-3",
-                 "rocks/lua-protobuf":  "0.5.0-1"
+                 "rocks/luautf8":  "0.1.6-1",
+                 "rocks/lua-iconv":  "7.1.0-1",
+                 "rocks/lua-protobuf":  "0.5.2-1"
              },
     "devs":  {
 
