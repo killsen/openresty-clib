@@ -10,6 +10,7 @@ local assert = assert
 local tostring = tostring
 local type = type
 local insert_tab = table.insert
+local str_gmatch = string.gmatch
 
 local function meta(name, t)
    t = t or {}
@@ -146,7 +147,7 @@ end
 
 function Lexer:full_ident(name, opt)
    self:whitespace()
-   local b, ident, pos = self "^()([%a_][%w_.]*)%s*()"
+   local b, ident, pos = self "^()([%a_.][%w_.]*)%s*()"
    if not ident or ident:match "%.%.+" then
       return self:opterror(opt, (name or 'name')..' expected')
    end
@@ -254,12 +255,16 @@ function Lexer:array(opt)
 end
 
 function Lexer:constant(opt)
-   local c = self:full_ident('constant', 'opt') or
-             self:number('opt') or
-             self:quote('opt') or
-             self:structure('opt') or
-             self:array('opt')
-   if not c and not opt then
+   local c = self:full_ident('constant', 'opt')
+   if c == "true"  then return true  end
+   if c == "false" then return false end
+   if c == "none"  then return nil   end
+   if c            then return c     end
+   c = self:number('opt') or
+       self:quote('opt') or
+       self:structure('opt') or
+       self:array('opt')
+   if c == nil and not opt then
       return self:error "constant expected"
    end
    return c
@@ -458,9 +463,6 @@ local function field(self, lex, ident)
    if options then
       info.default_value, options.default = tostring(options.default), nil
       info.json_name, options.json_name = options.json_name, nil
-      if options.packed and options.packed == "false" then
-         options.packed = false
-      end
       info.options = options
    end
    if info.number <= 0 then
@@ -486,7 +488,7 @@ local function label_field(self, lex, ident, parent)
    if proto3_optional then
       local ot = default(parent, "oneof_decl")
       info.oneof_index = #ot
-      ot[#ot+1] = { name = "optional_" .. info.name }
+      ot[#ot+1] = { name = "_" .. info.name }
    else
       info.label = label
    end
@@ -965,7 +967,10 @@ local function check_service(self, lex, info)
 end
 
 function Parser:resolve(lex, info)
-   self.prefix = { "", info.package }
+   self.prefix = { "" }
+   for token in str_gmatch(info.package or "", "[^.]+") do
+      insert_tab(self.prefix, token)
+   end
    for _, v in iter(info, 'message_type') do
       check_message(self, lex, v)
    end
